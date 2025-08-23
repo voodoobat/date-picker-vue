@@ -2,7 +2,7 @@
   <div :class="$style.datepicker">
     <div :class="$style.month">
       <button :class="[$style.button]" type="button" @click="prevMonth" />
-      {{ formattedMonth }}
+      {{ formattedMonth }} {{ year }}
       <button :class="[$style.button]" type="button" @click="nextMonth" />
     </div>
     <div :class="$style.weekdays">
@@ -37,12 +37,10 @@ import { useDatePicker, formatDate } from '.'
 const props = defineProps<DatePickerProps>()
 const emit = defineEmits<DatePickerEmits>()
 
-const { active, days, formattedMonth, nextMonth, prevMonth, weekdays } =
+const { active, days, formattedMonth, nextMonth, prevMonth, weekdays, year } =
   useDatePicker(props)
 
-watch(active, () => {
-  emit('update:value', formatDate(active.value))
-})
+watch(active, () => emit('update:value', formatDate(active.value)))
 </script>
 
 <style module>
