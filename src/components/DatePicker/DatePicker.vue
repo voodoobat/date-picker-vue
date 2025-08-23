@@ -1,5 +1,5 @@
 <template>
-  <div ref="root" :class="$style.datepicker">
+  <div :class="$style.datepicker">
     <div :class="$style.month">
       <button :class="[$style.button]" type="button" @click="prevMonth" />
       {{ formattedMonth }}
@@ -34,7 +34,6 @@
 import type { DatePickerEmits, DatePickerProps } from '.'
 import { useDatePicker, formatDate } from '.'
 
-const root = ref<HTMLDivElement | null>(null)
 const props = defineProps<DatePickerProps>()
 const emit = defineEmits<DatePickerEmits>()
 
