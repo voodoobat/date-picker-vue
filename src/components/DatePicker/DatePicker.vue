@@ -1,5 +1,5 @@
 <template>
-  <div :class="$style.datepicker">
+  <div ref="root" :class="$style.datepicker">
     <div :class="$style.month">
       <button :class="[$style.button]" type="button" @click="prevMonth" />
       {{ formattedMonth }}
@@ -34,6 +34,7 @@
 import type { DatePickerEmits, DatePickerProps } from '.'
 import { useDatePicker, formatDate } from '.'
 
+const root = ref<HTMLDivElement | null>(null)
 const props = defineProps<DatePickerProps>()
 const emit = defineEmits<DatePickerEmits>()
 
@@ -64,10 +65,12 @@ watch(active, () => {
   --color-muted: gray;
   --color-active: blue;
   --color-font: black;
+  --color-bg: white;
 
   --transition: all 0.2s ease;
 
   --datepicker-grid-gap: 0.25rem;
+  --datepicker-bg: var(--color-bg);
   --day-font-size: 0.75em;
   --day-w: 1.75rem;
   --day-h: 1.75rem;
@@ -83,6 +86,8 @@ watch(active, () => {
   --month-button-w: 1.5rem;
   --month-button-h: 1.5rem;
   --weekday-font-size: 0.75em;
+
+  background-color: var(--datepicker-bg);
 }
 
 .month {

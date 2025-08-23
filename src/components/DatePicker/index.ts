@@ -2,6 +2,7 @@ import type { DatePickerProps } from './index.d'
 
 export type * from './index.d'
 export { default as DatePicker } from './DatePicker.vue'
+export { default as DatePickerInput } from './DatePickerInput.vue'
 
 export function useDatePicker(props: DatePickerProps) {
   const locale = ref<Intl.LocalesArgument>(props.locale || 'en-US')
@@ -45,6 +46,34 @@ export function useDatePicker(props: DatePickerProps) {
     nextMonth,
     prevMonth,
     setLocale,
+  }
+}
+
+export function useDatePickerInput(props: DatePickerProps) {
+  const dropdownRef = ref<HTMLDivElement>()
+  const open = ref(false)
+  const date = ref(props.value ?? formatDate(new Date()))
+
+  watch(date, () => (open.value = false))
+
+  function clickHandler(ev: MouseEvent) {
+    if (!dropdownRef.value?.contains(ev.target as Node)) {
+      open.value = false
+    }
+  }
+
+  onMounted(() => {
+    document.addEventListener('click', clickHandler)
+  })
+
+  onUnmounted(() => {
+    document.removeEventListener('click', clickHandler)
+  })
+
+  return {
+    date,
+    dropdownRef,
+    open,
   }
 }
 

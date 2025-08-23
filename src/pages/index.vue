@@ -1,14 +1,18 @@
 <template>
   <div :class="$style.demo">
+    <h2>lang:</h2>
     <div :class="$style.locale">
       <label v-for="lang in languages" :key="lang">
         <input type="radio" v-model="locale" :value="lang" />
         {{ lang }}
       </label>
     </div>
+    <h2>input:</h2>
+    <DatePickerInput :locale="locale" />
+    <h2>calendar:</h2>
+    <span>(see console)</span>
     <DatePicker
       :class="$style.datepicker"
-      value="1337-01-11"
       :locale="locale"
       @update:value="console.log"
     />
@@ -16,7 +20,7 @@
 </template>
 
 <script setup lang="ts">
-import { DatePicker } from '@/components/DatePicker'
+import { DatePicker, DatePickerInput } from '@/components/DatePicker'
 
 const languages = ['en-US', 'ru-RU', 'zh-CN']
 const locale = ref(languages[0])
