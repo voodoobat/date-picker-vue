@@ -167,28 +167,32 @@ watch(active, () => {
     border: var(--day-active-border);
   }
 
-  &[data-weekday='1'] {
+  &[data-weekday='0'] {
     grid-column: 1;
   }
 
-  &[data-weekday='2'] {
+  &[data-weekday='1'] {
     grid-column: 2;
   }
 
-  &[data-weekday='3'] {
+  &[data-weekday='2'] {
     grid-column: 3;
   }
 
-  &[data-weekday='4'] {
+  &[data-weekday='3'] {
     grid-column: 4;
   }
 
-  &[data-weekday='5'] {
+  &[data-weekday='4'] {
     grid-column: 5;
   }
 
-  &[data-weekday='6'] {
+  &[data-weekday='5'] {
     grid-column: 6;
+  }
+
+  &[data-weekday='6'] {
+    grid-column: 7;
   }
 }
 
