@@ -44,10 +44,20 @@ watch(date, () => emit('update:value', date.value!))
   background-color: var(--dropdown-bg);
   transition: var(--dropdown-transition);
 
+  @media (max-width: 768px) {
+    left: 50%;
+    transform: translateX(-50%) var(--dropdown-hidden-transform);
+  }
+
   &.open {
     opacity: 1;
     transform: none;
     pointer-events: all;
+
+    @media (max-width: 768px) {
+      left: 50%;
+      transform: translateX(-50%);
+    }
   }
 }
 </style>
