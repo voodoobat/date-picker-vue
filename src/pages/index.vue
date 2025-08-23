@@ -8,9 +8,8 @@
       </label>
     </div>
     <h2>input:</h2>
-    <DatePickerInput :locale="locale" />
+    <DatePickerInput :locale="locale" @update:value="console.log" />
     <h2>calendar:</h2>
-    <span>(see console)</span>
     <DatePicker
       :class="$style.datepicker"
       :locale="locale"

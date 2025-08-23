@@ -8,11 +8,15 @@
 </template>
 
 <script setup lang="ts">
-import type { DatePickerProps } from '.'
+import type { DatePickerEmits, DatePickerProps } from '.'
 import { DatePicker, useDatePickerInput } from '.'
 
 const props = defineProps<DatePickerProps>()
+const emit = defineEmits<DatePickerEmits>()
+
 const { date, dropdownRef, open } = useDatePickerInput(props)
+
+watch(date, () => emit('update:value', date.value))
 </script>
 
 <style module>
