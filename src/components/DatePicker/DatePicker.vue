@@ -45,25 +45,25 @@ watch(active, () => emit('update:value', formatDate(active.value)))
 
 <style module>
 .datepicker {
-  --color-muted: gray;
-  --color-active: blue;
-  --color-font: black;
-  --color-bg: white;
+  --datepicker-color-muted: gray;
+  --datepicker-color-active: blue;
+  --datepicker-color-font: black;
+  --datepicker-color-bg: white;
 
-  --transition: all 0.2s ease;
+  --datepicker-transition: all 0.2s ease;
 
   --datepicker-grid-gap: 0.25rem;
-  --datepicker-bg: var(--color-bg);
+  --datepicker-bg: var(--datepicker-color-bg);
   --day-font-size: 0.75em;
   --day-w: 1.75rem;
   --day-h: 1.75rem;
   --day-border: 1px solid transparent;
   --day-active-bg: inherit;
   --day-active-color: inherit;
-  --day-active-border: 1px solid var(--color-active);
+  --day-active-border: 1px solid var(--datepicker-color-active);
   --day-hover-bg: inherit;
   --day-hover-color: inherit;
-  --day-hover-border: 1px solid var(--color-muted);
+  --day-hover-border: 1px solid var(--datepicker-color-muted);
   --month-font-size: 0.75em;
   --month-h: 1.75rem;
   --month-button-w: 1.5rem;
@@ -71,18 +71,19 @@ watch(active, () => emit('update:value', formatDate(active.value)))
   --weekday-font-size: 0.75em;
 
   background-color: var(--datepicker-bg);
+  color: var(--datepicker-color-font);
 }
 
 .month {
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: space-between;
   gap: var(--datepicker-grid-gap);
   font-size: var(--month-font-size);
   height: var(--month-h);
 
   & > .button {
-    --color: var(--color-font);
+    --color: var(--datepicker-color-font);
 
     padding: 0;
     width: var(--month-button-w);
@@ -92,10 +93,10 @@ watch(active, () => emit('update:value', formatDate(active.value)))
     appearance: none;
     text-align: center;
     cursor: pointer;
-    transition: var(--transition);
+    transition: var(--datepicker-transition);
 
     &:hover {
-      --color: var(--color-active);
+      --color: var(--datepicker-color-active);
     }
 
     &::before {
@@ -140,7 +141,7 @@ watch(active, () => emit('update:value', formatDate(active.value)))
 .day {
   font-size: var(--day-font-size);
   border: var(--day-border);
-  transition: var(--transition);
+  transition: var(--datepicker-transition);
   cursor: pointer;
 
   &:hover {

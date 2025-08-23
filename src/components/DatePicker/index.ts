@@ -53,7 +53,7 @@ export function useDatePicker(props: DatePickerProps) {
 export function useDatePickerInput(props: DatePickerProps) {
   const dropdownRef = ref<HTMLDivElement>()
   const open = ref(false)
-  const date = ref(props.value ?? formatDate(new Date()))
+  const date = ref(props.value)
 
   watch(date, () => (open.value = false))
 

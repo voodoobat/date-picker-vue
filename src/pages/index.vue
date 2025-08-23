@@ -9,10 +9,18 @@
     </div>
     <h2>input:</h2>
     <DatePickerInput :locale="locale" @update:value="console.log" />
-    <h2>calendar:</h2>
-    <DatePicker
-      :class="$style.datepicker"
+    <h3>with date:</h3>
+    <DatePickerInput
+      value="1337-01-01"
       :locale="locale"
+      @update:value="console.log"
+    />
+    <h2>calendar:</h2>
+    <DatePicker :locale="locale" @update:value="console.log" />
+    <h3>with date:</h3>
+    <DatePicker
+      :locale="locale"
+      value="1337-01-01"
       @update:value="console.log"
     />
   </div>
@@ -31,10 +39,12 @@ const locale = ref(languages[0])
   flex-direction: column;
   align-items: center;
   gap: 1rem;
+  padding-bottom: 3rem;
 }
 
-.datepicker {
-  display: inline-block;
+.locale {
+  display: flex;
+  gap: 0.75rem;
 }
 </style>
 

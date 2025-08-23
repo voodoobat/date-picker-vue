@@ -16,7 +16,7 @@ const emit = defineEmits<DatePickerEmits>()
 
 const { date, dropdownRef, open } = useDatePickerInput(props)
 
-watch(date, () => emit('update:value', date.value))
+watch(date, () => emit('update:value', date.value!))
 </script>
 
 <style module>
