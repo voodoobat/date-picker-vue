@@ -38,22 +38,8 @@ const root = ref<HTMLDivElement | null>(null)
 const props = defineProps<DatePickerProps>()
 const emit = defineEmits<DatePickerEmits>()
 
-const {
-  active,
-  days,
-  formattedMonth,
-  nextMonth,
-  prevMonth,
-  setLocale,
-  weekdays,
-} = useDatePicker(props)
-
-watch(
-  () => props.locale,
-  () => {
-    setLocale(props.locale)
-  },
-)
+const { active, days, formattedMonth, nextMonth, prevMonth, weekdays } =
+  useDatePicker(props)
 
 watch(active, () => {
   emit('update:value', formatDate(active.value))

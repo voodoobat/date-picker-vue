@@ -11,12 +11,14 @@ export function useDatePicker(props: DatePickerProps) {
   const formattedMonth = computed(() => formatMonth(month.value, locale.value))
   const year = ref(active.value.getFullYear())
   const weekdays = computed(() => createWeekdays(locale.value))
-
   const days = computed(() => createDays(month.value, year.value))
 
-  function setLocale(value: DatePickerProps['locale']) {
-    locale.value = value
-  }
+  watch(
+    () => props.locale,
+    () => {
+      locale.value = props.locale
+    },
+  )
 
   function nextMonth() {
     if (month.value === 11) {
@@ -45,7 +47,6 @@ export function useDatePicker(props: DatePickerProps) {
     year,
     nextMonth,
     prevMonth,
-    setLocale,
   }
 }
 
