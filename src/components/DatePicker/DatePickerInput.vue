@@ -2,7 +2,7 @@
   <div :class="$style['datepicker-input']">
     <input type="text" v-model="date" @focus="open = true" :disabled="open" />
     <div ref="dropdownRef" :class="[$style.dropdown, open && $style.open]">
-      <DatePicker v-bind="props" @update:value="date = $event" />
+      <DatePicker v-if="open" v-bind="props" @update:value="date = $event" />
     </div>
   </div>
 </template>

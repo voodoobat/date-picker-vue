@@ -57,18 +57,30 @@ export function useDatePickerInput(props: DatePickerProps) {
 
   watch(date, () => (open.value = false))
 
-  function clickHandler(ev: MouseEvent) {
+  function handleClose(ev: Event) {
     if (!dropdownRef.value?.contains(ev.target as Node)) {
       open.value = false
     }
   }
 
-  onMounted(() => {
-    document.addEventListener('click', clickHandler)
-  })
+  function handleEscape(ev: KeyboardEvent) {
+    if (ev.key === 'Escape') {
+      open.value = false
+    }
+  }
 
-  onUnmounted(() => {
-    document.removeEventListener('click', clickHandler)
+  watch(open, (isOpen) => {
+    const inputs = document.querySelectorAll('input, textarea, button')
+
+    if (isOpen) {
+      inputs.forEach((input) => input.addEventListener('focus', handleClose))
+      document.addEventListener('keyup', handleEscape)
+      document.addEventListener('mousedown', handleClose)
+    } else {
+      inputs.forEach((input) => input.removeEventListener('focus', handleClose))
+      document.removeEventListener('keyup', handleEscape)
+      document.removeEventListener('mousedown', handleClose)
+    }
   })
 
   return {

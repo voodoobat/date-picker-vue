@@ -14,18 +14,19 @@
       >
     </div>
     <div :class="$style.days">
-      <time
+      <button
         v-for="day in days"
         :key="day.date.getDate()"
+        @click="active = day.date"
+        :data-weekday="day.weekday"
+        type="button"
         :class="[
           $style.day,
           formatDate(active) === formatDate(day.date) && $style.active,
         ]"
-        :datetime="formatDate(day.date)"
-        :data-weekday="day.weekday"
-        @click="active = day.date"
-        >{{ day.date.getDate() }}</time
       >
+        <time :datetime="formatDate(day.date)">{{ day.date.getDate() }}</time>
+      </button>
     </div>
   </div>
 </template>
@@ -58,6 +59,7 @@ watch(active, () => emit('update:value', formatDate(active.value)))
   --day-w: 1.75rem;
   --day-h: 1.75rem;
   --day-border: 1px solid transparent;
+  --day-bg: inherit;
   --day-active-bg: inherit;
   --day-active-color: inherit;
   --day-active-border: 1px solid var(--datepicker-color-active);
@@ -95,8 +97,10 @@ watch(active, () => emit('update:value', formatDate(active.value)))
     cursor: pointer;
     transition: var(--datepicker-transition);
 
+    &:focus,
     &:hover {
-      --color: var(--datepicker-color-active);
+      outline: none;
+      --color: var(--datepicker-color-muted);
     }
 
     &::before {
@@ -142,8 +146,14 @@ watch(active, () => emit('update:value', formatDate(active.value)))
   font-size: var(--day-font-size);
   border: var(--day-border);
   transition: var(--datepicker-transition);
+  background: var(--day-bg);
   cursor: pointer;
 
+  &:focus {
+    outline: none;
+  }
+
+  &:focus,
   &:hover {
     background-color: var(--day-hover-bg);
     color: var(--day-hover-color);
