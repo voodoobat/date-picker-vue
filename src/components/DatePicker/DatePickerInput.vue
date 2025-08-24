@@ -2,7 +2,7 @@
   <div :class="$style['datepicker-input']">
     <input type="text" v-model="date" @focus="open = true" :disabled="open" />
     <div ref="dropdownRef" :class="[$style.dropdown, open && $style.open]">
-      <DatePicker v-if="open" v-bind="props" @update:value="date = $event" />
+      <DatePicker v-if="show" v-bind="props" @update:value="date = $event" />
     </div>
   </div>
 </template>
@@ -14,7 +14,7 @@ import { DatePicker, useDatePickerInput } from '.'
 const props = defineProps<DatePickerProps>()
 const emit = defineEmits<DatePickerEmits>()
 
-const { date, dropdownRef, open } = useDatePickerInput(props)
+const { date, dropdownRef, open, show } = useDatePickerInput(props)
 
 watch(date, () => emit('update:value', date.value!))
 </script>
