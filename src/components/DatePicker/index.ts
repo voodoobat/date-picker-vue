@@ -1,6 +1,6 @@
-import type { DatePickerProps } from './index.d'
+import type { DatePickerProps } from './types'
 
-export type * from './index.d'
+export type * from './types'
 export { default as DatePicker } from './DatePicker.vue'
 export { default as DatePickerInput } from './DatePickerInput.vue'
 
