@@ -5,20 +5,13 @@ export { default as DatePicker } from './DatePicker.vue'
 export { default as DatePickerInput } from './DatePickerInput.vue'
 
 export function useDatePicker(props: DatePickerProps) {
-  const locale = ref<Intl.LocalesArgument>(props.locale || 'en-US')
+  const locale = computed<Intl.LocalesArgument>(() => props.locale || 'en-US')
   const active = ref(props.value ? parseDate(props.value) : new Date())
   const month = ref(active.value.getMonth())
   const formattedMonth = computed(() => formatMonth(month.value, locale.value))
   const year = ref(active.value.getFullYear())
   const weekdays = computed(() => createWeekdays(locale.value))
   const days = computed(() => createDays(month.value, year.value))
-
-  watch(
-    () => props.locale,
-    () => {
-      locale.value = props.locale
-    },
-  )
 
   function nextMonth() {
     if (month.value === 11) {
