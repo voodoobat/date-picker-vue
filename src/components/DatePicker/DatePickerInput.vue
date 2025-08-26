@@ -12,8 +12,9 @@
 </template>
 
 <script setup lang="ts">
-import type { DatePickerEmits, DatePickerProps } from '.'
-import { DatePicker, useDatePickerInput } from '.'
+import type { DatePickerEmits, DatePickerProps } from './types'
+import DatePicker from './DatePicker.vue'
+import { useDatePickerInput } from './use-date-picker-input'
 
 const props = defineProps<DatePickerProps>()
 const emit = defineEmits<DatePickerEmits>()

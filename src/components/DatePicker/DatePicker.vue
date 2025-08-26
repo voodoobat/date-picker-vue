@@ -32,8 +32,9 @@
 </template>
 
 <script setup lang="ts">
-import type { DatePickerEmits, DatePickerProps } from '.'
-import { useDatePicker, formatDate } from '.'
+import type { DatePickerEmits, DatePickerProps } from './types'
+import { useDatePicker } from './use-date-picker'
+import { formatDate } from './utils'
 
 const props = defineProps<DatePickerProps>()
 const emit = defineEmits<DatePickerEmits>()
