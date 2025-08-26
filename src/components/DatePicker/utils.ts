@@ -13,8 +13,17 @@ export function formatMonth(month: number, locale: Intl.LocalesArgument) {
 
 export function parseDate(value: string) {
   const [year, month, day] = value.split('-').map(Number)
-  if (isNaN(year) || isNaN(month) || isNaN(day)) {
-    throw new Error('Invalid date format')
+  const isDate =
+    !isNaN(year) &&
+    !isNaN(month) &&
+    month > 0 &&
+    month < 13 &&
+    !isNaN(day) &&
+    day > 0 &&
+    day < 32
+
+  if (!isDate) {
+    throw new Error('Invalid date')
   }
 
   return new Date(year, month - 1, day)
