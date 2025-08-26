@@ -1,9 +1,9 @@
 <template>
   <div :class="$style.datepicker">
     <div :class="$style.month">
-      <button :class="[$style.button]" type="button" @click="prevMonth" />
+      <button :class="$style.button" type="button" @click="prevMonth" />
       {{ formattedMonth }} {{ year }}
-      <button :class="[$style.button]" type="button" @click="nextMonth" />
+      <button :class="$style.button" type="button" @click="nextMonth" />
     </div>
     <div :class="$style.weekdays">
       <span

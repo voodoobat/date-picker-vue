@@ -45,6 +45,7 @@ export function useDatePicker(props: DatePickerProps) {
 
 export function useDatePickerInput(props: DatePickerProps) {
   const dropdownRef = ref<HTMLDivElement>()
+  const active = ref(props.value ? parseDate(props.value) : new Date())
   const open = ref(false)
   const show = ref(false)
   const date = ref(props.value)
@@ -82,6 +83,7 @@ export function useDatePickerInput(props: DatePickerProps) {
   })
 
   return {
+    active,
     date,
     dropdownRef,
     open,
