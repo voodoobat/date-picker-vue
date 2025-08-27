@@ -1,11 +1,10 @@
 import type { DatePickerProps } from './types'
-import { createDays, createWeekdays, formatMonth, parseDate } from './utils'
+import { createDays, createWeekdays, parseDate } from './utils'
 
 export function useDatePicker(props: DatePickerProps) {
   const locale = computed<Intl.LocalesArgument>(() => props.locale || 'en-US')
   const active = ref(props.value ? parseDate(props.value) : new Date())
   const month = ref(active.value.getMonth())
-  const formattedMonth = computed(() => formatMonth(month.value, locale.value))
   const year = ref(active.value.getFullYear())
   const weekdays = computed(() => createWeekdays(locale.value))
   const days = computed(() => createDays(month.value, year.value))
@@ -32,7 +31,7 @@ export function useDatePicker(props: DatePickerProps) {
     active,
     days,
     locale,
-    formattedMonth,
+    month,
     weekdays,
     year,
     nextMonth,
